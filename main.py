@@ -146,7 +146,8 @@ def mutazione_intelligente(popolazione):
 def evoluzione():
     popolazione=inizializza(8)
     migliore=popolazione[0]
-    for i in range(300):
+    generazione=0
+    while(count_attacking_pairs(migliore['genoma'])>0):
         popolazione = fitness(popolazione)
         popolazione = selezione(popolazione)
         if (popolazione[0]['voto'] < migliore['voto']):
@@ -154,7 +155,8 @@ def evoluzione():
         popolazione = crossover(popolazione)
         popolazione = mutazione(popolazione)
         popolazione = mutazione_intelligente(popolazione)
-        print(f"Generazione {i:3d} -  Voto migliore: {migliore['voto']:2d}")
+        generazione=generazione+1
+        print(f"Generazione {generazione:3d} -  Voto migliore: {migliore['voto']:2d}")
     print(f"Il miglior genoma è {migliore['genoma']}")
     print(f"Voto: {count_attacking_pairs(migliore['genoma'])}")
 
